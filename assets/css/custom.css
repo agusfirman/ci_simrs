@@ -1,0 +1,35 @@
+footer {
+		position: fixed;
+		height: 50px;
+		bottom: 0;
+		width: 100%;
+	}
+	.table-responsive {
+	    @include media-breakpoint-up(md) {
+	        display: table;
+	    }
+	}
+	#table_task{
+		/* font-size: 8px; */
+		width: 100%
+	}
+
+	.loading{
+		width: 50px;
+		height: 50px;
+		border: 5px solid #ccc;
+		border-top-color: #ff6;
+		border-radius: 100%;
+		position: fixed;
+		left: 0;
+		right: 0;
+		top:0;
+		bottom: 0;
+		margin:auto;
+		animation: round 2s linear infinite;
+	}
+
+	@keyframes round {
+		from{transform: rotate(0deg);}
+		to{transform: rotate(360deg);}
+	}
