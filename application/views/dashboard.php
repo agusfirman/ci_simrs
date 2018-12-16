@@ -98,27 +98,78 @@
 					<canvas id="chartjs-dashboard-line"></canvas>
 				</div>
 					<?php
-					// $query_2017 = "SELECT * FROM task WHERE tgl_post=DATE(NOW())";
-					// $query_2017 = "SELECT YEAR(task.tgl_post) AS tahun,MONTH(task.tgl_post) AS bulan, COUNT(*) AS jumlah_bulanan FROM task WHERE YEAR(task.tgl_post)='2017' GROUP BY YEAR(task.tgl_post),MONTH(task.tgl_post)";
-					// $query_2018 = "SELECT YEAR(task.tgl_post) AS tahun,MONTH(task.tgl_post) AS bulan, COUNT(*) AS jumlah_bulanan FROM task WHERE YEAR(task.tgl_post)='2018' GROUP BY YEAR(task.tgl_post),MONTH(task.tgl_post)";
-					// $jumlah_bln_2017 = array();
-					// $jumlah_bln_2018 = array();
-					// $result =$mysqli->query($query_2017);
-					// $result2 =$mysqli->query($query_2018);
-					// while($data   = $result->fetch_object()){
-					// 	$jumlah_bln_2017[] = $data->jumlah_bulanan;
-					// }
-					// $jumlah_bln_2018 = array();
-					// while($data2   = $result2->fetch_object()){
-					// 	$jumlah_bln_2018[] = $data2->jumlah_bulanan;
-					// }
-					$before_year;
-					$current_year;
-					// print_r(json_encode($jumlah_bln_2018));
+					foreach ($before_year as $data) {
+						$jumlahBY[] = $data->jumlah;
+					}
+					foreach ($current_year as $data) {
+						$jumlahCY[] = $data->jumlah;
+					}
 					 ?>
 			</div>
 		</div>
 	</div>
+	<script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function(event) {
+			// Line chart
+			new Chart(document.getElementById("chartjs-dashboard-line"), {
+				type: 'line',
+				data: {
+					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+					datasets: [{
+						label: "Sales ($)",
+						fill: true,
+						backgroundColor: "transparent",
+						borderColor: "#47BAC1",
+						data:<?= json_encode($jumlahCY) ?>
+					}, {
+						label: "Orders",
+						fill: true,
+						backgroundColor: "transparent",
+						borderColor: "#5fc27e",
+						borderDash: [4, 4],
+						data: <?= json_encode($jumlahBY) ?>
+					}]
+				},
+				options: {
+					maintainAspectRatio: false,
+					legend: {
+						display: false
+					},
+					tooltips: {
+						intersect: false
+					},
+					hover: {
+						intersect: true
+					},
+					plugins: {
+						filler: {
+							propagate: false
+						}
+					},
+					scales: {
+						xAxes: [{
+							reverse: true,
+							gridLines: {
+								color: "rgba(0,0,0,0.05)"
+							}
+						}],
+						yAxes: [{
+							ticks: {
+								stepSize: 500
+							},
+							display: true,
+							borderDash: [5, 5],
+							gridLines: {
+								color: "rgba(0,0,0,0)",
+								fontColor: "#fff"
+							}
+						}]
+					}
+				}
+			});
+		});
+	</script>
 	<!-- end view grafik task -->
 
 	<!-- View Calendar -->
@@ -377,105 +428,53 @@
 	</div>
 </div>
 
+
 <script>
-			document.addEventListener("DOMContentLoaded", function(event) {
-				// Line chart
-				new Chart(document.getElementById("chartjs-dashboard-line"), {
-					type: 'line',
-					data: {
-						labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-						datasets: [{
-							label: "2018",
-							fill: true,
-							backgroundColor: "transparent",
-							borderColor: "#0cc2aa",
-							data: <?php //echo json_encode($jumlah_bln_2018); ?>
-						}]
-					},
-					options: {
-						maintainAspectRatio: false,
-						legend: {
-							display: false
-						},
-						tooltips: {
-							intersect: false
-						},
-						hover: {
-							intersect: true
-						},
-						plugins: {
-							filler: {
-								propagate: false
-							}
-						},
-						scales: {
-							xAxes: [{
-								reverse: true,
-								gridLines: {
-									color: "rgba(0,0,0,0.05)"
-								}
-							}],
-							yAxes: [{
-								ticks: {
-									stepSize: 10
-								},
-								display: true,
-								borderDash: [5, 5],
-								gridLines: {
-									color: "rgba(0,0,0,0)",
-									fontColor: "#fff"
-								}
-							}]
-						}
-					}
-				});
-			});
 
-			document.addEventListener("DOMContentLoaded", function(event) {
-				$('#datetimepicker-dashboard').datetimepicker({
-					inline: true,
-					sideBySide: false,
-					format: 'L'
+	document.addEventListener("DOMContentLoaded", function(event) {
+		$('#datetimepicker-dashboard').datetimepicker({
+			inline: true,
+			sideBySide: false,
+			format: 'L'
 
-				});
-			});
+		});
+	});
 
-			document.addEventListener("DOMContentLoaded", function(event) {
-				$('#datatables-dashboard').DataTable({
-					pageLength: 10,
-					lengthChange: false,
-					bFilter: false,
-					autoWidth: false
-				});
-			});
+	document.addEventListener("DOMContentLoaded", function(event) {
+		$('#datatables-dashboard').DataTable({
+			pageLength: 10,
+			lengthChange: false,
+			bFilter: false,
+			autoWidth: false
+		});
+	});
 
-			// Datatables with Buttons
-				var datatablesButtons = $('#datatables-buttons').DataTable({
-					lengthChange: !1,
-					buttons: ["copy", "print"],
-					responsive: true
-				});
-				datatablesButtons.buttons().container().appendTo("#datatables-buttons_wrapper .col-md-6:eq(0)")
+	// Datatables with Buttons
+		var datatablesButtons = $('#datatables-buttons').DataTable({
+			lengthChange: !1,
+			buttons: ["copy", "print"],
+			responsive: true
+		});
+		datatablesButtons.buttons().container().appendTo("#datatables-buttons_wrapper .col-md-6:eq(0)")
 
-			document.addEventListener("DOMContentLoaded", function(event) {
-				// Pie chart
-				new Chart(document.getElementById("chartjs-dashboard-pie"), {
-					type: 'pie',
-					data: {
-						labels: <?php echo json_encode($nama_task_cat2) ?>,
-						datasets: [{
-							data: <?php //echo json_encode($jumlah2) ?>,
-							backgroundColor: ["#0cc2aa", "#6c757d", "#f44455", "#2e3e4e","#5b7dff","#fcc100", "#a180da"],
-							borderColor: "transparent"
-						}]
-					},
-					options: {
-						responsive: !window.MSInputMethodContext,
-						maintainAspectRatio: false,
-						legend: {
-							display: false
-						}
-					}
-				});
-			});
-		</script>
+	// document.addEventListener("DOMContentLoaded", function(event) {
+	// 	// Pie chart
+	// 	new Chart(document.getElementById("chartjs-dashboard-pie"), {
+	// 		type: 'pie',
+	// 		data: {
+	// 			labels: // json_encode($nama_task_cat2) ,
+	// 			datasets: [{
+	// 				data:  //json_encode($jumlah2),
+	// 				backgroundColor: ["#0cc2aa", "#6c757d", "#f44455", "#2e3e4e","#5b7dff","#fcc100", "#a180da"],
+	// 				borderColor: "transparent"
+	// 			}]
+	// 		},
+	// 		options: {
+	// 			responsive: !window.MSInputMethodContext,
+	// 			maintainAspectRatio: false,
+	// 			legend: {
+	// 				display: false
+	// 			}
+	// 		}
+	// 	});
+</script>

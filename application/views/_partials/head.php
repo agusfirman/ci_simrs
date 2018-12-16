@@ -11,7 +11,7 @@
 	<title>SIMRS - Responsive Admin Template</title>
 
 	<link href="assets/css/app.css" rel="stylesheet">
-	<!-- <link href="assets/css/datepicker3.css" rel="stylesheet"> -->
+	<link href="assets/css/datepicker3.css" rel="stylesheet">
 	<!-- <link href="assets/css/datetimepicker.css" rel="stylesheet"> -->
 	<!-- <link href="assets/editable/css/bootstrap-editable.css" rel="stylesheet"> -->
 	<!-- <link href="assets/css/custom.css" rel="stylesheet"> -->

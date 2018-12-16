@@ -27,7 +27,7 @@
 							<a href="#" class="list-group-item">
 								<div class="row no-gutters align-items-center">
 									<div class="col-2">
-										<img src="img/avatar-5.jpg" class="avatar img-fluid rounded-circle" alt="Ashley Briggs">
+										<img src="<?= base_url('assets/img/avatar5.png')?>" class="avatar img-fluid rounded-circle" alt="Ashley Briggs">
 									</div>
 									<div class="col-10 pl-2">
 										<div class="text-dark">Ashley Briggs</div>
@@ -39,7 +39,7 @@
 							<a href="#" class="list-group-item">
 								<div class="row no-gutters align-items-center">
 									<div class="col-2">
-										<img src="img/avatar-2.jpg" class="avatar img-fluid rounded-circle" alt="Carl Jenkins">
+										<img src="<?= base_url('assets/img/avatar2.png')?>" class="avatar img-fluid rounded-circle" alt="Carl Jenkins">
 									</div>
 									<div class="col-10 pl-2">
 										<div class="text-dark">Carl Jenkins</div>
@@ -51,7 +51,7 @@
 							<a href="#" class="list-group-item">
 								<div class="row no-gutters align-items-center">
 									<div class="col-2">
-										<img src="img/avatar-4.jpg" class="avatar img-fluid rounded-circle" alt="Stacie Hall">
+										<img src="<?= base_url('assets/img/avatar4.png')?>" class="avatar img-fluid rounded-circle" alt="Stacie Hall">
 									</div>
 									<div class="col-10 pl-2">
 										<div class="text-dark">Stacie Hall</div>
@@ -63,7 +63,7 @@
 							<a href="#" class="list-group-item">
 								<div class="row no-gutters align-items-center">
 									<div class="col-2">
-										<img src="img/avatar-3.jpg" class="avatar img-fluid rounded-circle" alt="Bertha Martin">
+										<img src="<?= base_url('assets/img/avatar3.png')?>" class="avatar img-fluid rounded-circle" alt="Bertha Martin">
 									</div>
 									<div class="col-10 pl-2">
 										<div class="text-dark">Bertha Martin</div>
@@ -148,7 +148,7 @@
 							<i class="align-middle" data-feather="settings"></i>
 						</span>
 						<span class="d-none d-sm-inline-block">
-							<img src="img/avatar.jpg" class="avatar img-fluid rounded-circle mr-1" alt="Chris Wood" /> <span class="text-dark">Chris Wood</span>
+							<img src="<?= base_url('assets/img/avatar.png')?>" class="avatar img-fluid rounded-circle mr-1" alt="Chris Wood" /> <span class="text-dark">Chris Wood</span>
 						</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">

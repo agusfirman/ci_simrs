@@ -9,7 +9,7 @@
 			Main
 		</li>
 		<li class="sidebar-item active">
-			<a href="http://192.168.3.142/simrs" class="sidebar-link">
+			<a href="<?= base_url()?>" class="sidebar-link">
 				<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
 				<span class="sidebar-badge badge badge-primary">6</span>
 			</a>
@@ -165,7 +165,7 @@
 
 	<div class="sidebar-bottom d-none d-lg-block">
 		<div class="media">
-			<img class="rounded-circle mr-3" src="img/avatar.jpg" alt="Chris Wood" width="40" height="40">
+			<img class="rounded-circle mr-3" src="<?= base_url('assets/img/avatar.png')?>" alt="Chris Wood" width="40" height="40">
 			<div class="media-body">
 				<h5 class="mb-1 text-white">Chris Wood</h5>
 				<div class="text-light">
